@@ -19,3 +19,9 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }
+
+.font-outline-2 {
+  -webkit-text-stroke: 2px black;
+  -webkit-text-fill-color: transparent;
+  paint-order: stroke fill;
+}
