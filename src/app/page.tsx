@@ -186,6 +186,8 @@ export default function Home() {
       </div>
 
       <ServicesScrollSection />
+
+      <section className="h-screen bg-secondary"></section>
     </main>
   );
 }

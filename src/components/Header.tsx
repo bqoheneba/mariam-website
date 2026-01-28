@@ -11,7 +11,7 @@ const Header = ({ className }: Props) => {
   return (
     <div
       className={cn(
-        "px-10 py-6 w-full flex items-center justify-between",
+        "px-10 py-6 w-full flex items-center justify-between z-40",
         className,
       )}
     >

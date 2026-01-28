@@ -1,159 +1,148 @@
 "use client";
 
-import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { IconCheck } from "@tabler/icons-react";
+import React, { useRef } from "react";
+import { useScroll, useTransform, motion, useSpring } from "motion/react";
 
-export default function ServicesScrollSection() {
-  const servicesRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: servicesProgress } = useScroll({
-    target: servicesRef,
-    offset: ["start start", "end end"],
+const sections = [
+  {
+    title: "Strategic Services",
+    items: [
+      "Brand Management & Positioning",
+      "Marketing Strategy Development",
+      "Go-to-Market Strategy",
+      "Brand Engagement Strategy",
+      "Consumer Insights & Research",
+    ],
+  },
+  {
+    title: "Operational Services",
+    items: [
+      "Project Management",
+      "Event Management",
+      "Sponsorship Management",
+      "Campaign Execution",
+      "Vendor & Stakeholder Management",
+    ],
+  },
+  {
+    title: "Creative Services",
+    items: [
+      "Concept Development",
+      "Experiential Marketing",
+      "Digital Marketing",
+      "Content Strategy",
+      "Brand Storytelling",
+    ],
+  },
+];
+
+const ServicesScrollSection: React.FC = () => {
+  const containerRef = useRef<HTMLElement | null>(null);
+
+  // Create scroll progress tied to this section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
   });
 
-  const servicesSlides = [
-    {
-      image: "/images/service2.png",
-      bullets: [
-        "Concept Development",
-        "Experiential Marketing",
-        "Digital Marketing",
-        "Content Strategy",
-      ],
-    },
-    {
-      image: "/images/service3.png",
-      bullets: [
-        "Project Management",
-        "Event Management",
-        "Sponsorship Managements",
-        "Campaign Execution",
-      ],
-    },
-    {
-      image: "/images/service1.png",
-      bullets: [
-        "Brand Management & Strategy",
-        "Marketing Strategy Development",
-        "Go-To-Market Strategy",
-        "Brand Engagement Strategy",
-      ],
-    },
+  // Container animations
+  const containerOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+
+  // Content transitions start after container animation (0.2 onwards)
+  const opacities = [
+    useTransform(scrollYProgress, [0.2, 0.35, 0.45], [1, 1, 0]),
+    useTransform(scrollYProgress, [0.45, 0.55, 0.65], [0, 1, 0]),
+    useTransform(scrollYProgress, [0.65, 0.75, 0.85], [0, 1, 1]),
   ];
 
-  const [index, setIndex] = useState(0);
 
-  useEffect(() => {
-    return servicesProgress.on("change", (v: number) => {
-      const idx = Math.min(
-        servicesSlides.length - 1,
-        Math.floor(v * servicesSlides.length),
-      );
-      setIndex(idx);
-    });
-  }, [servicesProgress]);
+  // Parallax for numbers
+  const numberY = [
+    useTransform(scrollYProgress, [0.2, 0.45], [0, -50]),
+    useTransform(scrollYProgress, [0.45, 0.65], [0, -50]),
+    useTransform(scrollYProgress, [0.65, 0.85], [0, -50]),
+  ];
 
-  // much larger radius and a quarter-arc
-  const r = 300;
-  const circumference = 2 * Math.PI * r;
-  const quarter = circumference / 4; // quarter circumference
-  // animate stroke offset from quarter -> 0 so the quarter arc grows anti-clockwise
-  const stroke = useTransform(servicesProgress, [0, 1], [quarter, 0]);
-
-  // compute a start angle near bottom-left and end angle 90deg later (quarter arc)
-  const startAngle = (225 * Math.PI) / 180; // 225deg (bottom-left)
-  const endAngle = startAngle + Math.PI / 2; // +90deg
-  const cx = r;
-  const cy = r;
-  const startX = cx + r * Math.cos(startAngle);
-  const startY = cy + r * Math.sin(startAngle);
-  const endX = cx + r * Math.cos(endAngle);
-  const endY = cy + r * Math.sin(endAngle);
+  // Width for the small progress indicator bar (0% -> 100% across the section)
+  const rawBarWidth = useTransform(scrollYProgress, [0.2, 0.75], ["0%", "100%"]);
+  const barWidth = useSpring(rawBarWidth, { stiffness: 100, damping: 30 });
 
   return (
-    <div ref={servicesRef} className="h-[300vh] relative bg-primary">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="h-full w-full flex items-center justify-center relative">
-          {/* Left: stacked images that accumulate */}
-          <div className="absolute left-24 top-1/2 -translate-y-1/2 w-1/2 h-50 pointer-events-none">
-            {servicesSlides.map((s, i) => {
-              const visible = i <= index;
-              const offsetX = i * 26;
-              const offsetY = -i * 8;
-              const rot = -8 + i * 6;
-              return (
+      <section ref={containerRef} className="relative h-[300vh] z-50">
+        <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+          <motion.div 
+            style={{ opacity: containerOpacity }}
+            className="bg-primary flex flex-col justify-between py-14 px-16 h-full w-full relative"
+          >
+            <div className="flex items-start justify-between w-full">
+              <div className="w-22 bg-white/25 h-1 overflow-hidden">
                 <motion.div
-                  key={i}
-                  animate={{
-                    opacity: visible ? 1 : 0,
-                    x: visible ? offsetX : -120,
-                    y: visible ? offsetY : 0,
-                    rotate: visible ? `${rot}deg` : `${8 - i * 3}deg`,
-                    scale: visible ? 1 - i * 0.02 : 0.92,
-                  }}
-                  transition={{ duration: 0.6 }}
-                  className="absolute w-96 h-80 overflow-hidden shadow-xl"
-                  style={{ zIndex: 100 + i }}
-                >
-                  <Image
-                    src={s.image}
-                    alt={`slide-${i}`}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Right: Services content with a larger circular outline */}
-          <div className="absolute right-10 w-[40%] flex items-center justify-center">
-            <div className="relative w-full max-w-md">
-              <svg
-                viewBox={`0 0 ${r * 2} ${r * 2}`}
-                preserveAspectRatio="xMidYMid meet"
-                className="absolute -left-65 top-45 pointer-events-none rotate-20"
-                style={{
-                  width: `${r * 1.8}px`,
-                  height: `${r * 1.8}px`,
-                  overflow: "visible",
-                }}
-              >
-                <motion.path
-                  // draw quarter arc from start -> end (sweepFlag=0 to reverse sweep direction)
-                  d={`M ${startX} ${startY} A ${r} ${r} 0 0 0 ${endX} ${endY}`}
-                  strokeWidth="1.5"
-                  fill="none"
-                  strokeDasharray={quarter}
-                  strokeLinecap="round"
-                  style={{ strokeDashoffset: stroke }}
-                  className="stroke-white/70"
+                  style={{ width: barWidth }}
+                  className="h-1 bg-secondary"
                 />
-              </svg>
-
-              <div className="relative z-10 p-8 bg-transparent">
-                <h2 className="text-4xl font-medium text-black tracking-tighter">
-                  Services
-                </h2>
-                <div className="mt-6 space-y-3 text-black">
-                  {servicesSlides[index].bullets.map((b, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.1, duration: 0.5 }}
-                      className="flex items-center space-x-2 leading-relaxed"
-                    >
-                      <span>{b}</span>
-                    </motion.div>
-                  ))}
-                </div>
+              </div>
+              <div className="relative text-[clamp(6rem,20vw,14rem)] font-medium leading-[0.85] text-secondary tracking-[-1.2rem] opacity-20">
+                {["01", "02", "03"].map((num, index) => (
+                  <motion.span
+                    key={num}
+                    style={{ opacity: opacities[index], y: numberY[index] }}
+                    className={index > 0 ? "absolute top-0 right-0" : ""}
+                  >
+                    {num}
+                  </motion.span>
+                ))}
               </div>
             </div>
-          </div>
+
+            <div className="flex flex-col md:flex-row items-end justify-between gap-8 relative min-h-75">
+              {sections.map((section, index) => {
+                // Split title into first word and rest for line break
+                const titleWords = section.title.split(" ");
+                const firstWord = titleWords[0];
+                const restOfTitle = titleWords.slice(1).join(" ");
+
+                return (
+                  <motion.div
+                    key={index}
+                    style={{ opacity: opacities[index] }}
+                    className="absolute inset-0 flex flex-col md:flex-row items-end justify-between gap-8"
+                  >
+                    <h2 className="m-0 text-[clamp(2.5rem,8vw,6rem)] leading-[0.95] font-semibold tracking-tighter text-white">
+                      {firstWord}
+                      <br />
+                      <span className="text-secondary">{restOfTitle}</span>
+                    </h2>
+                    <div className="md:w-1/3 flex flex-col items-end justify-end text-right">
+                      <motion.ul 
+                        className="text-sm text-secondary/70 font-medium max-w-[320px] space-y-2 list-none"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: false }}
+                        variants={{
+                          visible: { transition: { staggerChildren: 0.05 } }
+                        }}
+                      >
+                        {section.items.map((item, i) => (
+                          <motion.li 
+                            key={i}
+                            variants={{
+                              hidden: { opacity: 0, x: 20 },
+                              visible: { opacity: 1, x: 0 }
+                            }}
+                          >
+                            {item}
+                          </motion.li>
+                        ))}
+                      </motion.ul>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
-      </div>
-    </div>
+      </section>
   );
-}
+};
+
+export default ServicesScrollSection;
