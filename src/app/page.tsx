@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Paragraph from "@/components/Paragraph";
 import VideoSection from "@/components/VideoSection";
 import ServicesScrollSection from "@/components/ServicesScrollSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
@@ -78,7 +79,7 @@ export default function Home() {
             className="relative w-200 h-87.5 md:w-150 aspect-2/1 z-50"
           >
             <Image
-              src="/images/hero.png"
+              src="/images/hero.jpg"
               alt="Mariam's Picture"
               fill
               className="object-cover"
@@ -147,7 +148,7 @@ export default function Home() {
                 <div className="flex-1 relative h-full w-full">
                   <div className="relative h-96 overflow-hidden shadow-xl">
                     <Image
-                      src="/images/mariam.jpg"
+                      src="/images/mariam.jpeg"
                       fill
                       alt="A woman standing"
                       className="object-cover"
@@ -188,6 +189,8 @@ export default function Home() {
       <ServicesScrollSection />
 
       <section className="h-screen bg-secondary"></section>
+
+      <Footer />
     </main>
   );
 }
