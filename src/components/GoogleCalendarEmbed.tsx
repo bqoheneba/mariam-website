@@ -25,7 +25,7 @@ export default function GoogleCalendarEmbed({
     : calendarSrc;
 
   return (
-    <div className="w-full flex justify-center p-4 rounded-xl overflow-hidden bg-white/5 backdrop-blur-sm">
+    <div className="w-full flex justify-center p-4 rounded-xl overflow-hidden bg-[#202020] backdrop-blur-sm">
       <iframe
         src={cleanSrc}
         style={{
