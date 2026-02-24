@@ -97,7 +97,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div ref={horizontalRef} className="h-[500vh] relative">
+      <div id="about" ref={horizontalRef} className="h-[500vh] relative">
+        <div
+          id="portfolio"
+          className="absolute top-[60%] w-full h-px pointer-events-none"
+        />
         <div className="sticky top-0 h-screen overflow-hidden flex">
           <motion.div style={{ x }} className="flex shrink-0">
             <section className="w-screen h-screen flex items-center justify-between p-20 shrink-0">
@@ -162,7 +166,9 @@ export default function Home() {
         </div>
       </div>
 
-      <ServicesScrollSection />
+      <div id="services">
+        <ServicesScrollSection />
+      </div>
 
       <section className="w-full min-h-[90vh] bg-secondary flex flex-col justify-center items-center pt-40 pb-46 relative overflow-hidden border-t border-white/5">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
@@ -206,7 +212,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full min-h-screen bg-secondary flex flex-col justify-center items-center pb-46 pt-36 relative overflow-hidden">
+      <section
+        id="contact"
+        className="w-full min-h-screen bg-secondary flex flex-col justify-center items-center pb-46 pt-36 relative overflow-hidden"
+      >
         <div className="max-w-7xl w-full px-8 md:px-12 flex flex-col gap-20 items-center z-10 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-7xl leading-[0.9] font-semibold tracking-tighter text-white mb-6">

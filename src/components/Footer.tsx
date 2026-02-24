@@ -20,7 +20,7 @@ const Footer = () => {
       className="bg-secondary text-white pt-0 pb-10 relative overflow-hidden"
     >
       {/* Top Banner Image with Fixed/Parallax Effect */}
-      <div className="relative w-full h-[300px] overflow-hidden">
+      <div className="relative w-full h-75 overflow-hidden">
         <motion.div
           style={{ y }}
           className="absolute inset-0 h-[140%] -top-[20%]"
@@ -53,18 +53,21 @@ const Footer = () => {
           <div className="space-y-4">
             {/* <h4 className="text-sm font-medium opacity-100 uppercase tracking-wider text-primary">Navigate</h4> */}
             <ul className="text-sm font-light opacity-60 space-y-3">
-              {["Profile", "Philosophy", "Expertise", "Experiences"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="hover:text-primary transition-colors inline-block"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ),
-              )}
+              {[
+                { name: "About Me", href: "#about" },
+                { name: "My Services", href: "#services" },
+                { name: "Portfolio", href: "#portfolio" },
+                { name: "Contact", href: "#contact" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="hover:text-primary transition-colors inline-block"
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
