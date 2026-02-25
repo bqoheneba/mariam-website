@@ -14,7 +14,7 @@ import SpotifyEmbed from "@/components/SpotifyEmbed";
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const imageContainer = useRef<HTMLDivElement>(null);
-  const [scaleFactor, setScaleFactor] = useState(1);
+  const [, setScaleFactor] = useState(1);
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -39,7 +39,6 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, scaleFactor]);
   const filter = useTransform(
     scrollYProgress,
     [0, 1],
@@ -60,40 +59,94 @@ export default function Home() {
   return (
     <main className="relative">
       <Header className="sticky top-0 z-40" />
-      <div ref={container} className="h-[300vh] relative -top-23">
-        <div className="sticky top-0  h-screen flex items-center justify-center overflow-hidden">
-          <motion.p
-            style={{ x: textX, y: "-50%" }}
-            className="absolute text-[14rem] font-medium -tracking-[1rem] top-1/2 left-0 whitespace-nowrap"
-          >
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span key={i}>
-                <span className="text-white/50">Mariam</span>{" "}
-                <span className="text-primary">Kaleem</span>{" "}
-              </span>
-            ))}
-          </motion.p>
+      <div ref={container} className="h-[250vh] relative -top-23">
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden bg-secondary">
+          {/* Main Content Container - Centered */}
+          <div className="relative w-full h-full flex items-center justify-center z-20">
+            {/* Cinematic Image - Scales Up & Reveals */}
+            <motion.div
+              ref={imageContainer}
+              style={{
+                width: useTransform(
+                  scrollYProgress,
+                  [0, 0.6],
+                  ["60vw", "100vw"],
+                ),
+                height: useTransform(
+                  scrollYProgress,
+                  [0, 0.6],
+                  ["60vh", "100vh"],
+                ),
+                filter,
+              }}
+              className="relative overflow-hidden shadow-2xl z-10"
+            >
+              <Image
+                src="/images/hero.jpg"
+                alt="Mariam Kaleem"
+                fill
+                className="object-cover"
+                priority
+              />
+            </motion.div>
+
+            {/* Bold Typography Overlay - Difference Blend Mode */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none mix-blend-difference">
+              <motion.div
+                style={{
+                  y: useTransform(scrollYProgress, [0, 0.4], [0, -50]),
+                  opacity: useTransform(scrollYProgress, [0, 0.5], [1, 0]),
+                  scale: useTransform(scrollYProgress, [0, 0.6], [1, 1.2]),
+                }}
+                className="flex flex-col items-center text-center"
+              >
+                <motion.h1
+                  style={{
+                    x: useTransform(scrollYProgress, [0, 0.5], [0, -100]),
+                  }}
+                  className="text-[12vw] md:text-[8vw] leading-[0.9] font-semibold tracking-tighter text-white"
+                >
+                  MARIAM
+                </motion.h1>
+                <motion.h1
+                  style={{
+                    x: useTransform(scrollYProgress, [0, 0.5], [0, 100]),
+                  }}
+                  className="text-[12vw] md:text-[8vw] leading-[0.9] font-semibold tracking-tighter text-white"
+                >
+                  KALEEM
+                </motion.h1>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Background Running Text - Motion Blur Effect */}
           <motion.div
-            ref={imageContainer}
-            style={{ scale, filter }}
-            className="relative w-200 h-87.5 md:w-150 aspect-2/1 z-50"
+            style={{
+              x: textX,
+              opacity: useTransform(scrollYProgress, [0, 0.5], [0.1, 0]),
+            }}
+            className="absolute top-1/2 left-0 -translate-y-1/2 whitespace-nowrap pointer-events-none z-0"
           >
-            <Image
-              src="/images/hero.jpg"
-              alt="Mariam's Picture"
-              fill
-              className="object-cover"
-              priority
-            />
+            <h1 className="text-[20vw] leading-none font-bold tracking-tighter text-white uppercase select-none flex opacity-30 blur-sm">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <span key={i} className="mr-8">
+                  Mariam Kaleem
+                </span>
+              ))}
+            </h1>
           </motion.div>
 
-          <div className="absolute bottom-0 w-full flex flex-col items-center justify-center">
-            <p className="text-center font-light text-sm text-white/50 mb-3">
-              Powering Innovation <br /> Igniting Brands
+          {/* Scroll Indicator */}
+          <motion.div
+            style={{ opacity: useTransform(scrollYProgress, [0, 0.2], [1, 0]) }}
+            className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-4 mix-blend-difference"
+          >
+            <p className="text-white text-xs uppercase tracking-[0.2em] font-medium">
+              Scroll to Discover
             </p>
-
-            <div className="h-10 w-[0.02rem] bg-white/50" />
-          </div>
+            <div className="w-px h-16 bg-white animate-pulse" />
+          </motion.div>
         </div>
       </div>
 
