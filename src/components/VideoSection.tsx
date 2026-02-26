@@ -21,7 +21,7 @@ const VideoSection = () => {
   return (
     <section
       ref={container}
-      className="w-screen h-screen relative overflow-hidden shrink-0"
+      className="w-screen h-svh md:h-screen relative overflow-hidden shrink-0"
     >
       <iframe
         ref={iframeRef}
@@ -30,7 +30,7 @@ const VideoSection = () => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
-        className="absolute top-1/2 left-1/2 w-[max(100vw,177.78vh)] h-[max(100vh,56.25vw)] -translate-x-1/2 -translate-y-1/2 pointer-events-none border-0"
+        className="absolute top-1/2 left-1/2 w-[max(100vw,177.78svh)] h-[max(100svh,56.25vw)] md:w-[max(100vw,177.78vh)] md:h-[max(100vh,56.25vw)] -translate-x-1/2 -translate-y-1/2 pointer-events-none border-0"
       />
     </section>
   );

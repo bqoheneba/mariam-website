@@ -75,7 +75,7 @@ const ServicesScrollSection: React.FC = () => {
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
         <motion.div
           style={{ opacity: containerOpacity }}
-          className="bg-primary flex flex-col justify-between py-14 px-16 h-full w-full relative"
+          className="bg-primary flex flex-col justify-between py-10 lg:py-14 px-8 lg:px-16 h-full w-full relative"
         >
           <div className="flex items-start justify-between w-full">
             <div className="w-22 bg-white/25 h-1 overflow-hidden">
@@ -84,7 +84,7 @@ const ServicesScrollSection: React.FC = () => {
                 className="h-1 bg-secondary"
               />
             </div>
-            <div className="relative text-[clamp(6rem,20vw,14rem)] font-medium leading-[0.85] text-secondary tracking-[-1.2rem] opacity-20">
+            <div className="relative text-6xl lg:text-[clamp(6rem,20vw,14rem)] font-medium leading-[0.85] text-secondary tracking-[-0.5rem] lg:tracking-[-1.2rem] opacity-20">
               {["01", "02", "03"].map((num, index) => (
                 <motion.span
                   key={num}
@@ -97,7 +97,7 @@ const ServicesScrollSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-end justify-between gap-8 relative min-h-75">
+          <div className="flex flex-col md:flex-row lg:items-end justify-between lg:gap-8 relative min-h-75">
             {sections.map((section, index) => {
               // Split title into first word and rest for line break
               const titleWords = section.title.split(" ");
@@ -108,14 +108,13 @@ const ServicesScrollSection: React.FC = () => {
                 <motion.div
                   key={index}
                   style={{ opacity: opacities[index] }}
-                  className="absolute inset-0 flex flex-col md:flex-row items-end justify-between gap-8"
+                  className="absolute inset-0 flex flex-col lg:flex-row lg:items-end justify-end lg:justify-between max-lg:gap-8"
                 >
-                  <h2 className="m-0 text-[clamp(2.5rem,8vw,6rem)] leading-[0.95] font-semibold tracking-tighter text-white">
-                    {firstWord}
-                    <br />
-                    <span className="text-secondary">{restOfTitle}</span>
+                  <h2 className="text-[clamp(2.5rem,8vw,6rem)] leading-[0.95] font-semibold tracking-tighter text-white">
+                    <p>{firstWord}</p>
+                    <p className="text-secondary mt-1">{restOfTitle}</p>
                   </h2>
-                  <div className="md:w-1/3 flex flex-col items-end justify-end text-right">
+                  <div className="md:w-1/3 flex flex-col lg:items-end justify-end lg:text-right">
                     <motion.ul
                       className="text-sm text-secondary/70 font-medium max-w-[320px] space-y-2 list-none"
                       initial="hidden"

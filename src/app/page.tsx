@@ -15,6 +15,14 @@ export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const imageContainer = useRef<HTMLDivElement>(null);
   const [, setScaleFactor] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: container,
@@ -59,7 +67,7 @@ export default function Home() {
   return (
     <main className="relative">
       <Header className="sticky top-0 z-40" />
-      <div ref={container} className="h-[250vh] relative -top-23">
+      <div ref={container} className="h-[250vh] relative -top-16 md:-top-23">
         <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden bg-secondary">
           {/* Main Content Container - Centered */}
           <div className="relative w-full h-full flex items-center justify-center z-20">
@@ -70,12 +78,12 @@ export default function Home() {
                 width: useTransform(
                   scrollYProgress,
                   [0, 0.6],
-                  ["60vw", "100vw"],
+                  [isMobile ? "80vw" : "60vw", "100vw"],
                 ),
                 height: useTransform(
                   scrollYProgress,
                   [0, 0.6],
-                  ["60vh", "100vh"],
+                  [isMobile ? "50vh" : "60vh", "100vh"],
                 ),
                 filter,
               }}
@@ -104,7 +112,7 @@ export default function Home() {
                   style={{
                     x: useTransform(scrollYProgress, [0, 0.5], [0, -100]),
                   }}
-                  className="text-[12vw] md:text-[8vw] leading-[0.9] font-semibold tracking-tighter text-white"
+                  className="text-[12vw] lg:text-[8vw] leading-[0.9] font-semibold tracking-tighter text-white"
                 >
                   MARIAM
                 </motion.h1>
@@ -112,7 +120,7 @@ export default function Home() {
                   style={{
                     x: useTransform(scrollYProgress, [0, 0.5], [0, 100]),
                   }}
-                  className="text-[12vw] md:text-[8vw] leading-[0.9] font-semibold tracking-tighter text-white"
+                  className="text-[12vw] lg:text-[8vw] leading-[0.9] font-semibold tracking-tighter text-white"
                 >
                   KALEEM
                 </motion.h1>
@@ -157,10 +165,10 @@ export default function Home() {
         />
         <div className="sticky top-0 h-screen overflow-hidden flex">
           <motion.div style={{ x }} className="flex shrink-0">
-            <section className="w-screen h-screen flex items-center justify-between p-20 shrink-0">
+            <section className="w-screen h-screen flex flex-col max-lg:flex-col-reverse lg:flex-row items-start lg:items-center justify-around lg:justify-between px-6 pt-24 pb-10 lg:p-20 gap-6 lg:gap-0 shrink-0">
               <Paragraph
                 progress={textRevealProgress}
-                className="text-4xl flex flex-col justify-end leading-snug tracking-tighter font-medium shrink-0 h-full"
+                className="text-[5.5vw] sm:text-2xl lg:text-4xl flex flex-col justify-end leading-snug tracking-tighter font-medium shrink-0 lg:h-full"
                 text={[
                   "Strategic marketer with 18+ years",
                   "building customer-centric African",
@@ -169,7 +177,7 @@ export default function Home() {
                   "growth and loyalty",
                 ]}
               />
-              <p className="shrink-0 h-full text-sm font-light text-white/60 leading-relaxed mt-20">
+              <p className="shrink-0 lg:h-full text-sm font-light text-white/60 leading-relaxed lg:mt-20 lg:text-right max-w-65 lg:max-w-none">
                 Her passion for Africa&apos;s creative
                 <br /> economy fuels her mission to transform
                 <br /> the continent through innovation,
@@ -179,11 +187,11 @@ export default function Home() {
 
             <VideoSection />
 
-            <section className="w-screen h-screen flex flex-col items-center justify-center shrink-0 px-20">
-              <div className="flex items-center justify-center gap-20 w-full max-w-7xl">
-                <div className="flex-1 space-y-8">
-                  <div className="space-y-8">
-                    <p className="text-white text-5xl leading-tight tracking-tighter font-medium">
+            <section className="w-screen h-screen flex flex-col items-center justify-center shrink-0 px-6 lg:px-20">
+              <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-20 w-full max-w-7xl">
+                <div className="flex-1 space-y-4 lg:space-y-8">
+                  <div className="space-y-4 lg:space-y-8">
+                    <p className="text-white text-3xl lg:text-5xl leading-tight tracking-tighter font-medium">
                       Built transformative
                       <br />
                       marketing strategies
@@ -191,7 +199,7 @@ export default function Home() {
                       across Africa
                     </p>
 
-                    <div className="pt-6 max-w-sm mt-auto">
+                    <div className="pt-3 lg:pt-6 max-w-sm mt-auto">
                       <p className="text-white/80 text-sm leading-relaxed font-light">
                         Strategic expertise developed at MmrsOgilvy, Swivel
                         Africa, Vodafone, Standard Chartered, and Letshego
@@ -202,8 +210,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="flex-1 relative h-full w-full">
-                  <div className="relative h-96 overflow-hidden shadow-xl">
+                <div className="flex-1 relative w-full">
+                  <div className="relative h-56 lg:h-96 overflow-hidden shadow-xl">
                     <Image
                       src="/images/mariam.jpeg"
                       fill
@@ -223,32 +231,32 @@ export default function Home() {
         <ServicesScrollSection />
       </div>
 
-      <section className="w-full min-h-[90vh] bg-secondary flex flex-col justify-center items-center pt-40 pb-46 relative overflow-hidden border-t border-white/5">
+      <section className="w-full min-h-[90vh] bg-secondary flex flex-col justify-center items-center pt-20 lg:pt-40 pb-20 lg:pb-46 relative overflow-hidden border-t border-white/5">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[20%] right-[-10%] w-150 h-150 bg-primary/5 rounded-full blur-[100px]" />
           <div className="absolute bottom-[-10%] left-[-10%] w-125 h-125 bg-white/5 rounded-full blur-[80px]" />
         </div>
 
-        <div className="max-w-7xl w-full px-8 md:px-12 relative z-10 flex flex-col items-center text-center">
-          <div className="mb-16 max-w-4xl">
+        <div className="max-w-7xl w-full px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">
+          <div className="mb-8 lg:mb-16 max-w-4xl w-full">
             <div className="inline-flex items-center gap-3 pl-3 pr-4 py-2 mb-6 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <span className="relative flex h-3 w-3">
+              <span className="relative flex size-2 lg:size-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                <span className="relative inline-flex rounded-full size-2 lg:size-3 bg-primary"></span>
               </span>
-              <span className="text-white/60 tracking-wider text-xs font-medium uppercase">
+              <span className="text-white/60 tracking-wider text-[0.6rem] lg:text-xs font-medium uppercase">
                 Featured Podcast
               </span>
             </div>
 
-            <h2 className="text-7xl leading-[0.9] font-semibold tracking-tighter text-white mb-6">
+            <h2 className="text-4xl lg:text-7xl leading-[0.9] max-lg:leading-[1.1] font-semibold tracking-tighter text-white mb-4 lg:mb-6">
               Scoop with
-              <span className="text-primary/90 block md:inline md:ml-4">
+              <span className="text-primary/90 block lg:inline lg:ml-4">
                 Mariam
               </span>
             </h2>
 
-            <p className="lg:text-lg text-white/60 text-center font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-white/60 text-center font-light max-w-2xl mx-auto leading-relaxed">
               Dive deep into conversations on strategic marketing and
               <br className="max-lg:hidden" /> brand building across the African
               continent.
@@ -269,11 +277,11 @@ export default function Home() {
         id="contact"
         className="w-full min-h-screen bg-secondary flex flex-col justify-center items-center pb-46 pt-36 relative overflow-hidden"
       >
-        <div className="max-w-7xl w-full px-8 md:px-12 flex flex-col gap-20 items-center z-10 text-center">
+        <div className="max-w-7xl w-full px-8 lg:px-12 flex flex-col gap-20 items-center z-10 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-7xl leading-[0.9] font-semibold tracking-tighter text-white mb-6">
+            <h2 className="text-4xl lg:text-7xl leading-[0.9] font-semibold tracking-tighter text-white mb-6">
               Let&apos;s
-              <span className="text-white/40 block md:inline md:ml-6">
+              <span className="text-white/40 block lg:inline lg:ml-6">
                 Connect
               </span>
             </h2>
