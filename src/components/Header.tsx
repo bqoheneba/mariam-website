@@ -194,7 +194,9 @@ const Header = ({ className }: Props) => {
                     Email
                   </a>
                 </div>
-                <span className="sm:order-1">© {new Date().getFullYear()} Mariam Kaleem</span>
+                <span className="sm:order-1">
+                  © {new Date().getFullYear()} Mariam Kaleem
+                </span>
               </div>
             </div>
           </motion.div>
