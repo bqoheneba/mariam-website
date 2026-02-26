@@ -93,7 +93,7 @@ const Header = ({ className }: Props) => {
     <>
       <div
         className={cn(
-          "px-10 py-6 w-full flex items-center justify-between z-50 relative",
+          "px-6 py-4 md:px-10 md:py-6 w-full flex items-center justify-between z-50 relative",
           className,
         )}
       >
@@ -138,7 +138,7 @@ const Header = ({ className }: Props) => {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="fixed left-0 top-0 w-full h-screen origin-top bg-secondary text-white z-30 p-10 flex flex-col justify-center items-center overflow-hidden"
+            className="fixed left-0 top-0 w-full h-screen origin-top bg-secondary text-white z-30 px-6 py-4 md:p-10 flex flex-col justify-center items-center overflow-hidden"
           >
             {/* Background decorative elements */}
             <div className="absolute top-[-10%] right-[-5%] w-125 h-125 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
@@ -171,7 +171,7 @@ const Header = ({ className }: Props) => {
                     <div className="overflow-hidden" key={index}>
                       <motion.div
                         variants={mobileLinkVars}
-                        className="text-5xl md:text-7xl font-semibold tracking-tighter text-white/80 hover:text-primary transition-colors cursor-pointer"
+                        className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tighter text-white/80 hover:text-primary transition-colors cursor-pointer"
                       >
                         <a href={link.href} onClick={toggleMenu}>
                           {link.name}
@@ -182,9 +182,8 @@ const Header = ({ className }: Props) => {
                 </motion.div>
               </div>
 
-              <div className="flex justify-between items-end pb-10 text-white/40 text-sm font-light uppercase tracking-widest">
-                <span>© {new Date().getFullYear()} Mariam Kaleem</span>
-                <div className="flex gap-4">
+              <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-end gap-4 pb-6 md:pb-10 text-white/40 text-xs sm:text-sm font-light uppercase tracking-widest">
+                <div className="flex gap-4 sm:order-2">
                   <a href="#" className="hover:text-white transition-colors">
                     Instagram
                   </a>
@@ -195,6 +194,7 @@ const Header = ({ className }: Props) => {
                     Email
                   </a>
                 </div>
+                <span className="sm:order-1">© {new Date().getFullYear()} Mariam Kaleem</span>
               </div>
             </div>
           </motion.div>
