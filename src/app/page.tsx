@@ -8,7 +8,7 @@ import Paragraph from "@/components/Paragraph";
 import VideoSection from "@/components/VideoSection";
 import ServicesScrollSection from "@/components/ServicesScrollSection";
 import Footer from "@/components/Footer";
-import GoogleCalendarEmbed from "@/components/GoogleCalendarEmbed";
+import CalConsultEmbed from "@/components/CalConsultEmbed";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
 
 export default function Home() {
@@ -122,7 +122,7 @@ export default function Home() {
                   }}
                   className="text-[12vw] lg:text-[8vw] leading-[0.9] font-semibold tracking-tighter text-white"
                 >
-                  KALEEM
+                  K. A-BUAHIN
                 </motion.h1>
               </motion.div>
             </div>
@@ -139,7 +139,7 @@ export default function Home() {
             <h1 className="text-[20vw] leading-none font-bold tracking-tighter text-white uppercase select-none flex opacity-30 blur-sm">
               {Array.from({ length: 4 }).map((_, i) => (
                 <span key={i} className="mr-8">
-                  Mariam Kaleem
+                  Mariam K. A-BUAHIN
                 </span>
               ))}
             </h1>
@@ -294,11 +294,7 @@ export default function Home() {
 
           <div className="w-full max-w-5xl">
             <div className="w-full bg-white/5 backdrop-blur-sm rounded-2xl p-1 border border-white/10 shadow-2xl">
-              <GoogleCalendarEmbed
-                calendarSrc="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1424iSu83N2PPFTQEQH93SgAtYGv6z_H6ZAGa4lFHcbyCsLnw9U5IfGWhmYc-tW7z_LcKKHVMK?gv=true"
-                height={750}
-                theme="dark"
-              />
+              <CalConsultEmbed />
             </div>
           </div>
         </div>
