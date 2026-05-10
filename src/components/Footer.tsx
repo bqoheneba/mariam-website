@@ -80,7 +80,7 @@ const Footer = () => {
               <ul className="text-sm font-light opacity-60 space-y-3">
                 <li>
                   <a
-                    href="https://www.instagram.com/mariamdigitalbee?igsh=ZTFnY2J4cG9xeWNz"
+                    href="https://www.instagram.com/mariamdigitalbee/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-primary transition-colors inline-block"
@@ -100,6 +100,16 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
+                    href="https://www.linkedin.com/in/abakaleem/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors inline-block"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="https://www.youtube.com/@mariam.digitalbee"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -110,7 +120,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="mailto:abakaleem@gmail.com"
+                    href="mailto:hello@mariamdigitalbee.org"
                     className="hover:text-primary transition-colors inline-block"
                   >
                     Email

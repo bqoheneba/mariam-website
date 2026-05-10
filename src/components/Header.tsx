@@ -183,14 +183,35 @@ const Header = ({ className }: Props) => {
               </div>
 
               <div className="flex flex-col items-center sm:flex-row sm:justify-between sm:items-end gap-4 pb-6 md:pb-10 text-white/40 text-xs sm:text-sm font-light uppercase tracking-widest">
-                <div className="flex gap-4 sm:order-2">
-                  <a href="#" className="hover:text-white transition-colors">
+                <div className="flex flex-wrap justify-center gap-4 sm:order-2">
+                  <a
+                    href="https://www.instagram.com/mariamdigitalbee/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
                     Instagram
                   </a>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="https://www.youtube.com/@mariam.digitalbee"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    YouTube
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/abakaleem/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
                     LinkedIn
                   </a>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="mailto:hello@mariamdigitalbee.org"
+                    className="hover:text-white transition-colors"
+                  >
                     Email
                   </a>
                 </div>
