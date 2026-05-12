@@ -13,12 +13,12 @@ const siteUrl =
     "https://mariamdigitalbee.org") || "https://mariamdigitalbee.org";
 
 const title = {
-  default: "Mariam Kaleem | African Marketing Strategist",
-  template: "%s | Mariam Kaleem",
+  default: "Mariam K. A-Buahin | Principal & Independent Executive Advisor",
+  template: "%s | Mariam K. A-Buahin",
 };
 
 const description =
-  "Mariam is a seasoned Fireball Marketer , a Snr Professional and dynamic Leader in Brand Strategy, Experiential Marketing, Digital Banking Transformation , and Operational Excellence, with over 18+ years of experience in senior roles across multiple multinationals including Ogilvy, Vodafone, Standard Chartered and Letshego Africa Holdings.";
+  "Mariam is a seasoned Fireball Marketer, a Snr Professional and Dynamic Leader";
 
 const faviconPath = "/images/logo.png";
 
@@ -26,17 +26,18 @@ const socialPreviewImage = {
   url: "/images/mariam.jpeg",
   width: 1080,
   height: 1080,
-  alt: "Mariam Kaleem",
+  alt: "Mariam K. A-Buahin",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
-  applicationName: "Mariam Kaleem",
-  authors: [{ name: "Mariam Kaleem", url: siteUrl }],
-  creator: "Mariam Kaleem",
+  applicationName: "Mariam K. A-Buahin",
+  authors: [{ name: "Mariam K. A-Buahin", url: siteUrl }],
+  creator: "Mariam K. A-Buahin",
   keywords: [
+    "Mariam K. A-Buahin",
     "Mariam Kaleem",
     "Digital Bee",
     "Fireball Marketer",
@@ -66,7 +67,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Mariam Kaleem",
+    siteName: "Mariam K. A-Buahin",
     title: title.default,
     description,
     images: [socialPreviewImage],

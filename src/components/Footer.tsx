@@ -27,7 +27,7 @@ const Footer = () => {
         >
           <Image
             src="/images/footer.jpg"
-            alt="Mariam Kaleem Footer"
+            alt="Mariam K. A-Buahin"
             fill
             className="object-cover"
             priority

@@ -91,7 +91,7 @@ export default function Home() {
             >
               <Image
                 src="/images/hero.jpg"
-                alt="Mariam Kaleem"
+                alt="Mariam K. A-Buahin"
                 fill
                 className="object-cover"
                 priority

@@ -216,7 +216,7 @@ const Header = ({ className }: Props) => {
                   </a>
                 </div>
                 <span className="sm:order-1">
-                  © {new Date().getFullYear()} Mariam Kaleem
+                  © {new Date().getFullYear()} Mariam K. A-Buahin
                 </span>
               </div>
             </div>
