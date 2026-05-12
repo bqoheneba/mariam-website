@@ -38,18 +38,17 @@ export default function CalConsultEmbed() {
   }, [embedJsUrl]);
 
   return (
-    <div className="w-full flex justify-center rounded-xl overflow-hidden bg-[#202020] backdrop-blur-sm min-h-[750px] h-[780px] lg:h-[820px]">
+    <div className="flex h-[clamp(960px,92dvh,1150px)] w-full items-center justify-center overflow-hidden rounded-xl bg-[#202020] backdrop-blur-sm">
       <Cal
         namespace={CAL_NAMESPACE}
         calLink={calLink}
         calOrigin={calOrigin}
         embedJsUrl={embedJsUrl}
-        className="w-full h-full"
+        className="flex h-full w-full min-h-0 flex-col items-center justify-center [&_iframe]:mx-auto [&_iframe]:block [&_iframe]:max-h-full [&_iframe]:w-full [&_iframe]:max-w-full"
         style={{
           width: "100%",
           height: "100%",
-          minHeight: 720,
-          overflow: "auto",
+          minHeight: "100%",
         }}
         config={{
           layout: "column_view",

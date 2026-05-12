@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# static export bundle for Hostinger upload
+/site.zip
+
 # production
 /build
 
