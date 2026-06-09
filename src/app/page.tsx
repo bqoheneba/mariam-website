@@ -8,7 +8,7 @@ import Paragraph from "@/components/Paragraph";
 import VideoSection from "@/components/VideoSection";
 import ServicesScrollSection from "@/components/ServicesScrollSection";
 import Footer from "@/components/Footer";
-import CalConsultEmbed from "@/components/CalConsultEmbed";
+// import CalConsultEmbed from "@/components/CalConsultEmbed";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
 
 export default function Home() {
@@ -63,6 +63,33 @@ export default function Home() {
 
   const textRevealProgress = useTransform(horizontalScrollY, [0, 0.3], [0, 1]);
   const x = useTransform(horizontalScrollY, [0.3, 1], ["0%", "-200vw"]);
+
+  const contactContainerVariants = {
+    hidden: { opacity: 0, y: 48, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1] as const,
+        staggerChildren: 0.12,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const contactItemVariants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
+  };
 
   return (
     <main className="relative">
@@ -171,7 +198,7 @@ export default function Home() {
                 className="text-[5.5vw] sm:text-2xl lg:text-4xl flex flex-col justify-end leading-snug tracking-tighter font-medium shrink-0 lg:h-full"
                 text={[
                   "Strategic marketer with 18+ years",
-                  "building customer-centric African",
+                  "building customer-centric multi-national",
                   "brands, translating insights into",
                   "impactful campaigns that drive",
                   "growth and loyalty",
@@ -277,26 +304,67 @@ export default function Home() {
         id="contact"
         className="w-full min-h-screen bg-secondary flex flex-col justify-center items-center pb-46 pt-36 relative overflow-hidden"
       >
-        <div className="max-w-7xl w-full px-8 lg:px-12 flex flex-col gap-20 items-center z-10 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl lg:text-7xl leading-[0.9] font-semibold tracking-tighter text-white mb-6">
+        <div className="max-w-7xl w-full px-8 lg:px-12 flex flex-col items-center z-10 text-center">
+          {/* <div className="w-full max-w-5xl">
+            <div className="w-full bg-white/5 backdrop-blur-sm rounded-2xl p-1 border border-white/10 shadow-2xl">
+              <CalConsultEmbed />
+            </div>
+          </div> */}
+
+          <motion.div
+            variants={contactContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+            className="w-full max-w-4xl rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-center shadow-2xl backdrop-blur-md sm:p-10 lg:p-14"
+          >
+            <motion.div
+              variants={contactItemVariants}
+              className="mx-auto mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-white/60"
+            >
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-primary" />
+              </span>
+              Direct Email
+            </motion.div>
+
+            <motion.h2
+              variants={contactItemVariants}
+              className="text-4xl lg:text-7xl leading-[0.9] font-semibold tracking-tighter text-white"
+            >
               Let&apos;s
               <span className="text-white/40 block lg:inline lg:ml-6">
                 Connect
               </span>
-            </h2>
-            <p className="lg:text-lg text-white/60 text-center font-light max-w-2xl mx-auto leading-relaxed">
-              Schedule a time to discuss potential collaborations, marketing
-              <br className="max-lg:hidden" />
-              strategies, or speaking engagements.
-            </p>
-          </div>
+            </motion.h2>
 
-          <div className="w-full max-w-5xl">
-            <div className="w-full bg-white/5 backdrop-blur-sm rounded-2xl p-1 border border-white/10 shadow-2xl">
-              <CalConsultEmbed />
-            </div>
-          </div>
+            <motion.p
+              variants={contactItemVariants}
+              className="mx-auto mt-6 max-w-2xl text-sm font-light leading-relaxed text-white/60 sm:text-base lg:text-lg"
+            >
+              Reach out to discuss brand strategy, marketing partnerships,
+              speaking engagements, or advisory opportunities.
+            </motion.p>
+
+            <motion.div
+              variants={contactItemVariants}
+              className="mx-auto my-8 h-px w-full max-w-lg bg-gradient-to-r from-transparent via-white/15 to-transparent"
+            />
+
+            <motion.a
+              variants={contactItemVariants}
+              href="mailto:hello@mariamdigitalbee.org"
+              className="group inline-flex flex-col items-center justify-center rounded-2xl border border-primary/40 bg-primary/10 px-6 py-4 text-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary sm:min-w-96"
+            >
+              <span className="text-xs font-semibold uppercase tracking-[0.22em]">
+                Email Mariam
+              </span>
+              <span className="mt-1 text-base font-medium tracking-tight sm:text-lg">
+                hello@mariamdigitalbee.org
+              </span>
+            </motion.a>
+          </motion.div>
         </div>
 
         <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-250 h-250 bg-white/5 rounded-full blur-3xl pointer-events-none" />
