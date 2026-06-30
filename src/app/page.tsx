@@ -258,14 +258,14 @@ export default function Home() {
         <ServicesScrollSection />
       </div>
 
-      <section className="w-full min-h-[90vh] bg-secondary flex flex-col justify-center items-center pt-20 lg:pt-40 pb-20 lg:pb-46 relative overflow-hidden border-t border-white/5">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-[20%] right-[-10%] w-150 h-150 bg-primary/5 rounded-full blur-[100px]" />
-          <div className="absolute bottom-[-10%] left-[-10%] w-125 h-125 bg-white/5 rounded-full blur-[80px]" />
+      <section className="relative flex w-full min-h-[90vh] flex-col items-center justify-center overflow-x-clip border-t border-white/5 bg-secondary pt-20 pb-20 lg:pt-40 lg:pb-46">
+        <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
+          <div className="absolute top-[20%] right-[-10%] h-150 w-150 rounded-full bg-primary/5 blur-[100px]" />
+          <div className="absolute bottom-[-10%] left-[-10%] h-125 w-125 rounded-full bg-white/5 blur-[80px]" />
         </div>
 
-        <div className="max-w-7xl w-full px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">
-          <div className="mb-8 lg:mb-16 max-w-4xl w-full">
+        <div className="relative z-10 flex w-full min-w-0 max-w-7xl flex-col items-center px-4 text-center sm:px-6 lg:px-12">
+          <div className="mb-8 w-full min-w-0 max-w-4xl lg:mb-16">
             <div className="inline-flex items-center gap-3 pl-3 pr-4 py-2 mb-6 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
               <span className="relative flex size-2 lg:size-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -290,9 +290,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="w-full max-w-4xl">
+          <div className="w-full min-w-0 max-w-4xl">
             <SpotifyEmbed
-              // Removed theme=0 to allow Spotify to auto-match the color
               src="https://open.spotify.com/embed/episode/4yJNb3ObmHSLbQl4CleTY0?utm_source=generator"
               height={352}
             />
@@ -302,9 +301,9 @@ export default function Home() {
 
       <section
         id="contact"
-        className="w-full min-h-screen bg-secondary flex flex-col justify-center items-center pb-46 pt-36 relative overflow-hidden"
+        className="relative flex w-full min-h-screen flex-col items-center justify-center overflow-x-clip bg-secondary px-4 pt-28 pb-32 sm:px-6 sm:pt-36 sm:pb-40 lg:pb-46"
       >
-        <div className="max-w-7xl w-full px-8 lg:px-12 flex flex-col items-center z-10 text-center">
+        <div className="relative z-10 flex w-full min-w-0 max-w-7xl flex-col items-center text-center lg:px-12">
           {/* <div className="w-full max-w-5xl">
             <div className="w-full bg-white/5 backdrop-blur-sm rounded-2xl p-1 border border-white/10 shadow-2xl">
               <CalConsultEmbed />
@@ -316,11 +315,11 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
-            className="w-full max-w-4xl rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-center shadow-2xl backdrop-blur-md sm:p-10 lg:p-14"
+            className="w-full min-w-0 max-w-4xl rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-center shadow-2xl backdrop-blur-md sm:p-8 lg:p-14"
           >
             <motion.div
               variants={contactItemVariants}
-              className="mx-auto mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.22em] text-white/60"
+              className="mx-auto mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-white/60 sm:mb-8 sm:gap-3 sm:px-4 sm:text-xs sm:tracking-[0.22em]"
             >
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
@@ -331,7 +330,7 @@ export default function Home() {
 
             <motion.h2
               variants={contactItemVariants}
-              className="text-4xl lg:text-7xl leading-[0.9] font-semibold tracking-tighter text-white"
+              className="text-balance text-3xl font-semibold leading-[0.95] tracking-tighter text-white sm:text-4xl lg:text-7xl lg:leading-[0.9]"
             >
               Let&apos;s
               <span className="text-white/40 block lg:inline lg:ml-6">
@@ -355,12 +354,12 @@ export default function Home() {
             <motion.a
               variants={contactItemVariants}
               href="mailto:hello@mariamdigitalbee.org"
-              className="group inline-flex flex-col items-center justify-center rounded-2xl border border-primary/40 bg-primary/10 px-6 py-4 text-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary sm:min-w-96"
+              className="group mx-auto inline-flex w-full max-w-md flex-col items-center justify-center rounded-2xl border border-primary/40 bg-primary/10 px-4 py-4 text-primary transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-secondary sm:px-6"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.22em]">
+              <span className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.22em]">
                 Email Mariam
               </span>
-              <span className="mt-1 text-base font-medium tracking-tight sm:text-lg">
+              <span className="mt-1 max-w-full text-sm font-medium tracking-tight break-all sm:text-base sm:break-normal">
                 hello@mariamdigitalbee.org
               </span>
             </motion.a>

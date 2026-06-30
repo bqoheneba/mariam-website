@@ -12,6 +12,7 @@ DirectoryIndex index.html
   AddType application/javascript .mjs
   AddType text/css .css
   AddType font/woff2 .woff2
+  AddType video/mp4 .mp4
 </IfModule>
 
 <IfModule mod_rewrite.c>
@@ -24,8 +25,9 @@ DirectoryIndex index.html
   RewriteRule ^_not-found - [L]
   RewriteRule ^__next - [L]
   RewriteRule ^images/ - [L]
+  RewriteRule ^videos/ - [L]
   RewriteRule ^favicon\.ico$ - [L]
-  RewriteRule \.(?:js|mjs|css|woff2?|ico|png|jpe?g|gif|webp|svg|map|txt|json)$ - [L]
+  RewriteRule \.(?:js|mjs|css|woff2?|ico|png|jpe?g|gif|webp|svg|map|txt|json|mp4|webm)$ - [L]
 
   # Real files or directories only
   RewriteCond %{REQUEST_FILENAME} -f [OR]
